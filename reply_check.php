@@ -17,7 +17,7 @@ if (!empty($_POST['title']) && !empty($_POST['body']) && !empty($_GET['post_id']
 	$stmt->bindValue(':title', $_POST['title']);
 	$stmt->bindValue(':body', $_POST['body']);
 	$stmt->execute();
-	header ('Location: display_post.php');
+	$answer = '返信が完了しました。';
 } else {
 	$answer = '入力されていない項目があります。';
 }
@@ -29,12 +29,10 @@ if (!empty($_POST['title']) && !empty($_POST['body']) && !empty($_GET['post_id']
 <meta charset="utf-8">
 </head>
 <body>
+<div style=" color: white; background: #f98289; padding: 20px; border: 2px dashed rgba(255 , 255 , 255 , 0.5);-moz-border-radius: 6px; -moz-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); -webkit-border-radius: 6px; -webkit-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); border-radius: 6px; box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); font-size: 100%; ">
 <?php echo $answer; ?>
-<?php if (!empty($_GET['post_id'])): ?>
 <p><a href="reply.php?post_id=<?php echo $_GET['post_id']; ?>">戻る</a></p>
-<?php else: ?>
-<p><a href="display_post.php">投稿一覧に戻る</a></p>
-<?php endif; ?>
+</div>
 </body>
 </html>
 

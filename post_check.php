@@ -26,7 +26,9 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
 <meta charset="utf-8">
 </head>
 <body>
+<div style=" color: white; background: #f98289; padding: 20px; border: 2px dashed rgba(255 , 255 , 255 , 0.5);-moz-border-radius: 6px; -moz-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); -webkit-border-radius: 6px; -webkit-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); border-radius: 6px; box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); font-size: 100%; ">
 <?php echo $answer; ?>
 <p><a href="display_post.php">投稿一覧へ<a/></p>
+</div>
 </body>
 </html>

@@ -30,6 +30,7 @@ if (!empty($_GET['reply_id']) && !empty($_GET['user_id'])) {
 <meta charset="utf-8">
 </head>
 <body>
+<div style=" color: white; background: #f98289; padding: 20px; border: 2px dashed rgba(255 , 255 , 255 , 0.5);-moz-border-radius: 6px; -moz-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); -webkit-border-radius: 6px; -webkit-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); border-radius: 6px; box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); font-size: 100%; ">
 <form method="POST" action="reply_edit_check.php?reply_id=<?php echo $_GET['reply_id']; ?>&user_id=<?php echo $_GET['user_id']; ?>">
 <p>
 <h2>タイトル</h2>
@@ -41,5 +42,6 @@ if (!empty($_GET['reply_id']) && !empty($_GET['user_id'])) {
 </p>
 <p><input type="submit" name="更新"></p>
 </form>
+</div>
 </body>
 </html>

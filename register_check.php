@@ -51,6 +51,7 @@ if (!empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['pass'])) 
 <meta charset="utf-8">
 </head>
 <body>
+<div style=" color: white; background: #f98289; padding: 20px; border: 2px dashed rgba(255 , 255 , 255 , 0.5);-moz-border-radius: 6px; -moz-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); -webkit-border-radius: 6px; -webkit-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); border-radius: 6px; box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); font-size: 100%; ">
 <?php if (!empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['pass'])): ?>
 <?php if (preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/', $_POST['mail'])): ?>
 <?php if (preg_match('/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,100}+\z/', $_POST['pass'])): ?>
@@ -73,5 +74,6 @@ if (!empty($_POST['name']) && !empty($_POST['mail']) && !empty($_POST['pass'])) 
 <?php echo $answer; ?>
 <p><a href="register.php">戻る</a></p>
 <?php endif; ?>
+</div>
 </body>
 </html>

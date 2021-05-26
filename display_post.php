@@ -44,58 +44,21 @@ function escape($s) {
 <meta charset="utf-8">
 </head>
 <body>
+<div style=" color: black; background: #f98289; padding: 20px; border: 2px dashed rgba(255 , 255 , 255 , 0.5);-moz-border-radius: 6px; -moz-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); -webkit-border-radius: 6px; -webkit-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); border-radius: 6px; box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); font-size: 100%; text-align:center;">
+<h1>Web掲示板</h1>
 <?php if (!empty($_SESSION['name']) && !empty($_SESSION['id'])): ?>
-<p><?php echo $_SESSION['name']; ?>さんのアカウントでログイン中</p>
-<p><a href="user_info.php?user_id=<?php echo $_SESSION['id']; ?>">マイページへ</a></p>
-<p><a href="logout.php">ログアウト</a></p>
+<p><span style="color:white"><?php echo $_SESSION['name']; ?></span>さんのアカウントでログイン中</p>
+<p><a href="user_info.php?user_id=<?php echo $_SESSION['id']; ?>">・マイページへ</a></p>
+<p><a href="logout.php">・ログアウト</a></p>
 <?php else: ?>
 <p>ゲストととして閲覧中</p>
-<p><a href="login.php">ログイン</a></p>
-<p><a href="register.php">新規ユーザー登録へ</a></p>
+<p><a href="login.php">・ログイン</a></p>
+<p><a href="register.php">・新規ユーザー登録へ</a></p>
 <?php endif; ?>
-<p><a href="new_post.php">新規投稿</a></p>
+<p><a href="new_post.php">・新規投稿</a></p>
 
-<!-- 投稿一覧表示 -->
-<?php foreach ($result as $post): ?>
-<table border="5">
-<p>
-<tr>
-<th>投稿ID</th>
-<th>投稿者名</th>
-<th>タイトル</th>
-<th>本文</th>
-<th>投稿日時</th>
-<th>操作一覧</th>
-</tr>
-<tr>
-<td><?php echo escape($post['id']); ?></td>
-<td><a href="user_info.php?user_id=<?php echo $post['user_id']; ?>"><?php echo escape($post['name']); ?></a></td>
-<td><?php echo escape($post['title']); ?></td>
-<td><?php echo escape($post['body']); ?></td>
-<td><?php echo date('Y年n月j日G:i', strtotime(escape($post['post_date']))); ?></td>
-<?php if (!empty($_SESSION['id']) && !empty($_SESSION['name'])): ?>
-<?php if ($post['user_id'] == $_SESSION['id']): ?>
-<td>
-<p><a href="edit.php?post_id=<?php echo escape($post['id']); ?>">編集</a></p>
-<p><a href="delete.php?post_id=<?php echo escape($post['id']); ?>">削除</a></p>
-<p><a href="reply.php?post_id=<?php echo escape($post['id']); ?>&user_id=<?php echo $_SESSION['id']; ?>">返信を書く</a></p>
-<p><a href="show_reply.php?post_id=<?php echo escape($post['id']); ?>">返信を見る</a></p>
-</td>
-<?php else: ?>
-<td>
-<p><a href="reply.php?post_id=<?php echo escape($post['id']); ?>&user_id=<?php echo $_SESSION['id']; ?>">返信を書く</a></p>
-<p><a href="show_reply.php?post_id=<?php echo escape($post['id']); ?>">返信を見る</a></p>
-</td>
-<?php endif; ?>
-<?php else: ?>
-<td><p>この投稿に対して行える操作はありません。</p></td>
-<?php endif; ?>
-</tr>
-</p>
-</table>
-<?php endforeach; ?>
-
-<!-- ページング用リンク -->
+<!-- ページング用リンク(上) -->
+<div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333;">
 <?php if ($now > 1): ?>
 <a href="display_post.php?page=<?php echo $now - 1; ?>">前へ</a>
 <?php else: ?>
@@ -107,6 +70,47 @@ function escape($s) {
 <?php else: ?>
 <?php echo '次へ'; ?>
 <?php endif; ?>
+
+<!-- 投稿一覧表示 -->
+<?php foreach ($result as $post): ?>
+<div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; border-radius: 10px; background-color: #009999; color: #ffffff; text-align:left">
+<p>[投稿ID：<?php echo escape($post['id']); ?>]</p>
+<p>[投稿者：<?php echo escape($post['name']); ?>さん] / [投稿日時：<?php echo date('Y/n/j/G:i', strtotime(escape($post['post_date']))); ?>]</p>
+<p>[タイトル]</p>
+<p><?php echo escape($post['title']); ?></p>
+<p>[本文]</p>
+<p><?php echo escape($post['body']); ?></p>
+<p>[操作一覧]</p>
+<?php if (!empty($_SESSION['id']) && !empty($_SESSION['name'])): ?>
+<?php if ($post['user_id'] == $_SESSION['id']): ?>
+<p><a href="edit.php?post_id=<?php echo escape($post['id']); ?>">編集</a></p>
+<p><a href="delete.php?post_id=<?php echo escape($post['id']); ?>">削除</a></p>
+<p><a href="reply.php?post_id=<?php echo escape($post['id']); ?>&user_id=<?php echo $_SESSION['id']; ?>">返信を書く</a></p>
+<p><a href="show_reply.php?post_id=<?php echo escape($post['id']); ?>">返信を見る</a></p>
+<?php else: ?>
+<p><a href="reply.php?post_id=<?php echo escape($post['id']); ?>&user_id=<?php echo $_SESSION['id']; ?>">返信を書く</a></p>
+<p><a href="show_reply.php?post_id=<?php echo escape($post['id']); ?>">返信を見る</a></p>
+<?php endif; ?>
+<?php else: ?>
+<p>この投稿に対して行える操作はありません。</p>
+<?php endif; ?>
+</div>
+<?php endforeach; ?>
+
+<!-- ページング用リンク(下) -->
+<?php if ($now > 1): ?>
+<a href="display_post.php?page=<?php echo $now - 1; ?>">前へ</a>
+<?php else: ?>
+<?php echo '前へ'; ?>
+<?php endif; ?>
+<?php echo $now . '/' . $max_page; ?>
+<?php if ($now < $max_page):?>
+<a href="display_post.php?page=<?php echo $now + 1; ?>">次へ</a>
+<?php else: ?>
+<?php echo '次へ'; ?>
+<?php endif; ?>
+</div>
+</div>
 
 </body>
 </html>
