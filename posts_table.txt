@@ -1,0 +1,79 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: 2021 年 5 月 26 日 17:06
+-- サーバのバージョン： 5.6.44
+-- PHP Version: 7.1.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `procir_TAKEDA379`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_date` datetime DEFAULT NULL,
+  `title` varchar(64) NOT NULL,
+  `body` text,
+  `deleted_flag` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_id`, `post_date`, `title`, `body`, `deleted_flag`) VALUES
+(54, 5, '2021-05-24 02:00:38', 'aの初投稿', 'test!!!!!!!!!!!!!!!', 0),
+(55, 6, '2021-05-24 02:03:54', 'test', 'test!!!!!!!!!', 0),
+(56, 5, '2021-05-26 13:00:00', 'test', 'test', 0),
+(57, 5, '2021-05-26 08:00:00', 'test', 'test', 0),
+(58, 6, '2021-05-26 09:00:00', 'test', 'test', 0),
+(59, 5, '2021-05-26 13:00:00', 'test', 'test', 0),
+(60, 5, '2021-05-26 08:00:00', 'test', 'test', 0),
+(61, 6, '2021-05-26 09:00:00', 'test', 'test', 1),
+(62, 8, '2021-05-26 16:37:04', 'test', 'test!!!!!!!!!!!!!!11', 0),
+(63, 8, '2021-05-26 16:44:40', 'yukiの初投稿', 'test', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
