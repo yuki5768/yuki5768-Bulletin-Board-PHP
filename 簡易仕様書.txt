@@ -1,0 +1,19 @@
+//簡易仕様書
+
+//作者
+武田 裕貴(たけだ ゆうき)
+
+/
+//該当プロジェクトのリポジトリ
+https://github.com/yuki5768/yuki5768-Bulletin-Board-PHP
+
+//開発環境
+vim 7.4.1099
+
+//開発言語
+php 7.1.29
+MySQL 14.14
+
+//動作確認済み端末・OS
+ios 14.4.2 (safari 14.0.3/Chrome 87.0.4280.77)
+MacOS Big Sur 11.3(Safari 14.0.3/Chrome 89.0.4389.90 (Official Build) (x86_64))
