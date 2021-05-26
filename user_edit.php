@@ -1,10 +1,9 @@
 <?php
 //セッションチェック
 session_start();
-if (isset($_GET['user_id'])) {
-	//DB接続
+if (!empty($_GET['user_id'])) {
+	//DB接続&データ取得
 	require_once('connect.php');
-	//ユーザー情報チェック
 	$sql = 'SELECT * FROM users WHERE id = :id';
 	$stmt = $dbh->prepare($sql);
 	$stmt->bindValue(':id', $_GET['user_id']);

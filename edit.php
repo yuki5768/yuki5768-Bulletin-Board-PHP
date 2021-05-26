@@ -1,15 +1,14 @@
 <?php
 //セッションチェック
 session_start();
-if (!isset($_SESSION['id']) && !isset($_SESSION['name'])) {
+if (empty($_SESSION['id']) && empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 
-//DB接続
-if (isset($_GET['post_id'])) {
-	$post_id = $_GET['post_id'];
+if (!empty($_GET['post_id'])) {
+	//DB接続&データ取得
 	require_once('connect.php');
-	//ユーザーIDチェック
+	$post_id = $_GET['post_id'];
 	$sql = 'SELECT * FROM posts WHERE id = :id';
 	$stmt = $dbh->prepare($sql);
 	$stmt->bindValue(':id', $post_id);

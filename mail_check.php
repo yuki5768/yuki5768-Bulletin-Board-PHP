@@ -1,7 +1,7 @@
 <?php
 //未入力確認
 if (!empty($_POST['mail'])) {
-	//DB接続
+	//DB接続&データ取得
 	require_once('connect.php');
 	$sql1 = 'SELECT * FROM users WHERE mail = :mail';
 	$stmt1 = $dbh->prepare($sql1);

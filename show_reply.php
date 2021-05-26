@@ -2,14 +2,17 @@
 session_start();
 
 if (!empty($_GET['post_id'])) {
+	//DB接続
 	require_once('connect.php');
 
+	//投稿取得
 	$sql1 = 'SELECT * FROM users INNER JOIN posts ON posts.user_id = users.id WHERE deleted_flag = 0 AND posts.id = :post_id';
 	$stmt1 = $dbh->prepare($sql1);
 	$stmt1->bindValue(':post_id', $_GET['post_id']);
 	$stmt1->execute();
 	$result1 = $stmt1->fetchAll();
 
+	//返信取得
 	$sql2 = 'SELECT * FROM users INNER JOIN reply ON reply.user_id = users.id WHERE post_id = :post_id AND deleted_flag = 0';
 	$stmt2 = $dbh->prepare($sql2);
 	$stmt2->bindValue(':post_id', $_GET['post_id']);
@@ -31,10 +34,11 @@ if (!empty($_GET['post_id'])) {
 </head>
 <body>
 <div style=" color: white; background: #f98289; padding: 20px; border: 2px dashed rgba(255 , 255 , 255 , 0.5);-moz-border-radius: 6px; -moz-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); -webkit-border-radius: 6px; -webkit-box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); border-radius: 6px; box-shadow: 0 0 0 5px #f98289 , 0 2px 3px 5px rgba(0 , 0 , 0 , 0.5); font-size: 100%; ">
+
+<!-- 投稿表示 -->
 <h2>投稿</h2>
 <?php if (!empty($result1)): ?>
 <?php foreach ($result1 as $post): ?>
-<!-- 投稿表示 -->
 <table border="5">
 <p>
 <tr>
@@ -63,6 +67,7 @@ exit();
 ?>
 <?php endif; ?>
 
+<!-- 返信一覧表示 -->
 <h2>返信</h2>
 <?php if (!empty($result2)): ?>
 <?php foreach ($result2 as $reply): ?>
@@ -76,7 +81,6 @@ exit();
 <th>投稿日時</th>
 <th>操作一覧</th>
 </tr>
-<!-- 投稿一覧表示 -->
 <tr>
 <td><?php echo escape($reply['id']); ?></td>
 <td><?php echo escape($reply['name']); ?></td>
@@ -99,6 +103,8 @@ exit();
 <?php else: ?>
 <p>この投稿に対する返信はまだありません。</p>
 <?php endif; ?>
+
+<!-- 他ページへのリンク -->
 <?php if (!empty($_SESSION['name']) && !empty($_SESSION['id'])): ?>
 <p><a href="user_info.php?user_id=<?php echo $_SESSION['id']; ?>">マイページへ</a></p>
 <p><a href="logout.php">ログアウト</a></p>

@@ -5,11 +5,10 @@ if (empty($_SESSION['id']) || empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 
-//DB接続
 if (!empty($_GET['reply_id']) && !empty($_GET['user_id'])) {
 	if ($_GET['user_id'] == $_SESSION['id']) {
+		//DB接続&データ取得
 		require_once('connect.php');
-		//ユーザーIDチェック
 		$sql = 'SELECT * FROM reply WHERE id = :reply_id AND user_id = :user_id';
 		$stmt = $dbh->prepare($sql);
 		$stmt->bindValue(':reply_id', $_GET['reply_id']);

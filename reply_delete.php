@@ -9,7 +9,7 @@ if (empty($_SESSION['id']) && empty($_SESSION['name'])) {
 if (!empty($_GET['reply_id']) && !empty($_GET['user_id'])) {
 	if ($_GET['user_id'] == $_SESSION['id']) {
 
-		//DB接続
+		//DB接続&データ取得
 		require_once('connect.php');
 		$sql1 = 'SELECT * FROM reply WHERE id = :reply_id AND user_id = :user_id';
 		$stmt1 = $dbh->prepare($sql1);

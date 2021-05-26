@@ -1,7 +1,7 @@
 <?php
 //セッションチェック
 session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
+if (!empty($_SESSION['id']) && !empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 ?>

@@ -2,14 +2,14 @@
 //セッションチェック
 session_start();
 
-if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
+if (!empty($_SESSION['id']) && !empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 
 //未入力確認
 if (!empty($_POST['mail']) && !empty($_POST['pass'])) {
 
-	//DB接続
+	//DB接続&データ取得
 	require_once('connect.php');
 	$mail = $_POST['mail'];
 	$pass = $_POST['pass'];

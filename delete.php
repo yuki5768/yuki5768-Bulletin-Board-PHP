@@ -1,12 +1,12 @@
 <?php
 //セッションチェック
 session_start();
-if (!isset($_SESSION['id']) && !isset($_SESSION['name'])) {
+if (empty($_SESSION['id']) && empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 
 //ユーザー確認
-if (isset($_GET['post_id'])) {
+if (!empty($_GET['post_id'])) {
 	$post_id = $_GET['post_id'];
 
 	//DB接続

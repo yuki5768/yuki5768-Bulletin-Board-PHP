@@ -2,11 +2,9 @@
 //セッションチェック
 session_start();
 if (!empty($_GET['user_id']) && !empty($_SESSION['id'])) {
-	//DB接続
+	//DB接続&ユーザー情報取得処理
 	require_once('connect.php');
 	$user_id = $_GET['user_id'];
-
-	//ユーザー情報取得処理
 	$sql1 = 'SELECT * FROM users WHERE id = :user_id';
 	$stmt1 = $dbh->prepare($sql1);
 	$stmt1->bindValue(':user_id', $user_id);

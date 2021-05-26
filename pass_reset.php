@@ -1,6 +1,6 @@
 <?php
 //keyチェック
-if (isset($_GET['key'])) {
+if (!empty($_GET['key'])) {
 	$key = $_GET['key'];
 	//DB接続
 	require_once('connect.php');

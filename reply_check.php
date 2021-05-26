@@ -1,15 +1,13 @@
 <?php
 //セッションチェック
 session_start();
-if (!isset($_SESSION['id']) && !isset($_SESSION['name'])) {
+if (empty($_SESSION['id']) && empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 //未入力確認
 if (!empty($_POST['title']) && !empty($_POST['body']) && !empty($_GET['post_id'])) {
-	//DB接続
+	//DB接続&データ登録
 	require_once('connect.php');
-
-	//DBに投稿登録
 	$sql = 'INSERT INTO reply(post_id, user_id, title, body, reply_date, deleted_flag) VALUES(:post_id, :user_id, :title, :body, now(), 0)';
 	$stmt = $dbh->prepare($sql);
 	$stmt->bindValue(':post_id', $_GET['post_id']);

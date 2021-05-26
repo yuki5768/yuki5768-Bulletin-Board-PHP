@@ -1,20 +1,18 @@
 <?php
 //セッションチェック
 session_start();
-if (isset($SESSION['id']) && isset($_SESSION['name'])) {
+if (empty($SESSION['id']) && empty($_SESSION['name'])) {
 	header('Location: display_post.php');
 }
 
 //未入力確認
-if (isset($_GET['post_id']) && isset($_POST['title']) && isset($_POST['body'])) {
+if (!empty($_GET['post_id']) && !empty($_POST['title']) && !empty($_POST['body'])) {
 	$post_id = $_GET['post_id'];
 	$post_title = $_POST['title'];
 	$post_body = $_POST['body'];
 
-	//DB接続
+	//DB接続&データ取得
 	require_once('connect.php');
-
-	//投稿取得
 	$sql = 'SELECT * FROM posts WHERE id = :id';
 	$stmt = $dbh->prepare($sql);
 	$stmt->bindValue(':id', $post_id);
