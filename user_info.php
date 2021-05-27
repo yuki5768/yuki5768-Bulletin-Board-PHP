@@ -11,7 +11,7 @@ if (!empty($_GET['user_id']) && !empty($_SESSION['id'])) {
 	$stmt1->execute();
 	$user = $stmt1->fetch();
 
-	$sql2 = 'SELECT * FROM reply WHERE user_id = :user_id';
+	$sql2 = 'SELECT * FROM reply WHERE user_id = :user_id AND deleted_flag = 0';
 	$stmt2 = $dbh->prepare($sql2);
 	$stmt2->bindValue(':user_id', $user_id);
 	$stmt2->execute();
