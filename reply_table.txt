@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2021 年 5 月 26 日 17:07
+-- Generation Time: 2021 年 5 月 27 日 17:29
 -- サーバのバージョン： 5.6.44
 -- PHP Version: 7.1.29
 
@@ -19,43 +19,53 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `xxxxx`
+-- Database: `procir_TAKEDA379`
 --
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `users`
+-- テーブルの構造 `reply`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `reply` (
   `id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `mail` varchar(191) NOT NULL,
-  `pass` varchar(191) NOT NULL,
-  `image_name` varchar(256) DEFAULT NULL,
-  `quick_comment` varchar(64) DEFAULT NULL
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `body` text NOT NULL,
+  `reply_date` datetime NOT NULL,
+  `deleted_flag` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- テーブルのデータのダンプ `users`
+-- テーブルのデータのダンプ `reply`
 --
 
-INSERT INTO `users` (`id`, `name`, `mail`, `pass`, `image_name`, `quick_comment`) VALUES
-(4, 'c@procir.com', 'c@procir.com', '$2y$10$zUqgalKJ4HoG/PsTohiZ0uhBK90cwBkKRaEEDNneyZdt4CcYSnqNa', '', ''),
-(5, 'a@procir.com', 'a@procir.com', '$2y$10$VJvBmABrIDKIy6CvP8f8mOzZg0snmLC812bQ7Cys3g0/ze1CMca2q', '', ''),
-(6, 'd@procir.com', 'd@procir.com', '$2y$10$gD0WhUTJZZ4r24xzXVfKhuX8fc/hRu5ej6hLjym85HMGykWXYzFGC', '181648502460aaa627ebadc2.78735612.png', '<script>alert(1)</script>'),
-(7, 'e@procir.com', 'e@procir.com', '$2y$10$q9reAhkezICEdCS9NXSqTezM3.EIvhqwgdvxkq8Q7sUYkOwjANAYm', '', ''),
-(8, 'yuki', 'yuuki9978@outlook.jp', '$2y$10$hka6Cd/TvGQhhUGhUUq5DuOd2Ak7q4zJxta7bT7Nxu1g5D4JmkuTm', NULL, NULL);
+INSERT INTO `reply` (`id`, `post_id`, `user_id`, `title`, `body`, `reply_date`, `deleted_flag`) VALUES
+(1, 52, 1, '初返信', 'こんにちは！', '2021-05-23 21:17:47', 1),
+(2, 51, 1, 'test', 'hensin', '2021-05-23 21:38:35', 0),
+(3, 53, 1, 'test', 'reply test!!!!!!!!!!!!!!!!!!!!!!!!!!', '2021-05-23 23:38:59', 1),
+(4, 44, 1, 'test', 'reply test!!!!!!!!!!!!!!!!!!!!!', '2021-05-24 01:15:48', 0),
+(5, 45, 2, 'test', 'aさんからの返信', '2021-05-24 01:18:29', 0),
+(6, 54, 6, 'test', 'reply test!!!!!!!!!!!!!!!!!!', '2021-05-24 02:04:30', 1),
+(7, 54, 6, 'test2', 'reply test2!!!!!!!!!!!!!!!!!!!!!!!!!\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n!!!!!!!!!!!!!!!!!!!!!', '2021-05-24 02:05:55', 0),
+(8, 55, 6, 'test', 'reply test!!!!!!!!!!!!!!!!', '2021-05-24 16:58:39', 0),
+(9, 56, 6, 'test', 'test', '2021-05-26 15:10:37', 0),
+(10, 60, 6, 'test', 'test', '2021-05-26 15:37:40', 0),
+(11, 60, 6, 'test', 'test', '2021-05-26 15:38:29', 1),
+(12, 60, 6, 'test', 'test', '2021-05-26 15:40:03', 0),
+(13, 63, 8, 'test', 'test!!!!!!!!!!!!', '2021-05-26 17:18:21', 1),
+(14, 62, 8, 'test', 'test', '2021-05-27 15:37:13', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `reply`
 --
-ALTER TABLE `users`
+ALTER TABLE `reply`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -63,10 +73,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `reply`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `reply`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
