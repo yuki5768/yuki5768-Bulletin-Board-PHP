@@ -88,6 +88,7 @@ exit();
 <?php echo escape ($reply['title']); ?>
 <td><?php echo escape($reply['body']); ?></td>
 <td><?php echo date('Y年n月j日G:i', strtotime(escape($reply['reply_date']))); ?></td>
+<?php if (!empty($_SESSION['id'])): ?>
 <?php if ($reply['user_id'] == $_SESSION['id']): ?>
 <td>
 <p><a href="reply_edit.php?reply_id=<?php echo $reply['id']; ?>&user_id=<?php echo $reply['user_id']; ?>">編集</a></p>
@@ -95,6 +96,7 @@ exit();
 </td>
 <?php else: ?>
 <td><p>この返信に対して行える操作はありません。</p></td>
+<?php endif; ?>
 <?php endif; ?>
 </tr>
 </p>
